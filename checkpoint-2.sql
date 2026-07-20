@@ -32,6 +32,17 @@ left join Categories cg on p.CategoryID = cg.CategoryID
 where c.City = 'London'
 order by c.ContactName asc;
 
+--SELF JOIN
+--Bütün işçiləri və onların rəhbərlərini göstərin. Nəticədə işçinin adı, işçinin soyadı, rəhbərinin adı və rəhbərinin soyadı göstərilsin.
+--Işçinin soyadına görə A-Z sıralayın
+SELECT e.FirstName as EmployeeFirstName,
+       e.LastName as EmployeeLastName,
+	   m.FirstName as ManagerFirstName,
+	   m.LastName as ManagerLastName
+from Employees e left join Employees  m
+on e.ReportsTo = m.EmployeeID
+order by e.FirstName asc;
+
 --Bütün təchizatçıları göstərin. Əgər məhsulları varsa, təchizatçı şirkətin adı,məhsulun adı,
 --məhsulun kateqoriyası, məhsulun sifariş olunduğu sifariş nömrəsi göstər. Yalnız USA ölkəsində yerləşən təchizatçılar göstərilsin.
 select s.CompanyName, 
