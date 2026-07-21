@@ -47,3 +47,12 @@ order by TotalProductCount desc;
 
 --Burada Customers, Orders və Order Details cədvəllərini JOIN etdim. SUM() ilə hər müştərinin sifariş etdiyi ümumi məhsul miqdarını hesabladım.
 --HAVING ilə ümumi məhsul miqdarı 100-dən çox olan müştəriləri seçdim.
+
+--Sual. Hər ay üzrə ümumi satış məbləğini hesablayın. Nəticədə ay və ümumi satış məbləği göstərilsin. Nəticəni ay üzrə artan qaydada sıralayın.
+--Oracle SQL sintaksisi ilə.
+select extract(month from o.OrderDate) as OrderMonth,
+       sum(od.UnitPrice * od.Quantity) as TotalSales
+from Orders o
+join [Order Details] od on o.OrderID = od.OrderID
+group by extract(month from o.OrderDate)
+order by OrderMonth;
