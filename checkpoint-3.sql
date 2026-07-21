@@ -56,3 +56,7 @@ from Orders o
 join [Order Details] od on o.OrderID = od.OrderID
 group by extract(month from o.OrderDate)
 order by OrderMonth;
+
+--Queryni Oracle SQL sintaksisi ile yazmışam. Burada Orders və OrderDetails cədvəllərini JOIN etdim. 
+--EXTRACT() funksiyası ilə sifariş tarixindən ayı götürdüm. SUM() ilə hər ay üzrə ümumi satış məbləğini hesabladım.
+--GROUP BY ilə aylar üzrə qruplaşdırdım və nəticəni artan sırayla sıraladım.
