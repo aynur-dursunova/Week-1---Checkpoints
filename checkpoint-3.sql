@@ -53,7 +53,7 @@ order by TotalProductCount desc;
 select extract(month from o.OrderDate) as OrderMonth,
        sum(od.UnitPrice * od.Quantity) as TotalSales
 from Orders o
-join [Order Details] od on o.OrderID = od.OrderID
+join OrderDetails od on o.OrderID = od.OrderID
 group by extract(month from o.OrderDate)
 order by OrderMonth;
 
