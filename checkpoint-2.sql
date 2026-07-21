@@ -1,4 +1,6 @@
---Hər sifarişin sifariş nömrəsini, sifarişi verən müştərinin adını, sifariş tarixini göstərin.
+select * from Customers;
+
+--Sual. Hər sifarişin sifariş nömrəsini, sifarişi verən müştərinin adını, sifariş tarixini göstərin.
 select 
        o.OrderID,
        c.ContactName,
@@ -7,16 +9,18 @@ from Orders o
 join Customers c on o.CustomerID = c.CustomerID
 order by o.OrderDate;
 
---Hər müştərinin aldığı məhsulları, yəni müştərinin adı, məhsulun adı, sifariş olunan miqdarı göstər
-select c.ContactName, 
-       p.ProductName, 
-       od.Quantity
+--Burada Orders və Customers cədvəllərini JOIN etdim. Hər sifariş üçün müştərinin adı və sifariş tarixini göstərdim.
+----------------------------------------------
+--Sual. Hər müştərinin aldığı məhsulları, yəni müştərinin adı, məhsulun adı, sifariş olunan miqdarı göstər
+select c.ContactName, p.ProductName, od.Quantity
 from Customers c
 join Orders o on c.CustomerID = o.CustomerID
 join [Order Details] od on o.OrderID = od.OrderID
 join Products p on p.ProductID = od.ProductID;
 
---Londonda yerləşən bütün müştəriləri göstərin. Əgər sifariş veriblərsə: sifariş nömrəsi, məhsulun adı, qiymeti, məhsulun kateqoriyası, sifariş olunan miqdar 
+--Burada Customers, Orders, Order Details və Products cədvəllərini JOIN etdim. Hər müştərinin aldığı məhsulu və sifariş etdiyi miqdarı göstərdim.
+-----------------------------------------------
+--Sual. Londonda yerləşən bütün müştəriləri göstərin. Əgər sifariş veriblərsə: sifariş nömrəsi, məhsulun adı, qiymeti, məhsulun kateqoriyası, sifariş olunan miqdar 
 --göstərilsin. Nəticəni müştərinin adına görə A-Z sıralayın.
 select c.ContactName,
        o.OrderID, 
@@ -32,7 +36,9 @@ left join Categories cg on p.CategoryID = cg.CategoryID
 where c.City = 'London'
 order by c.ContactName asc;
 
---Bütün təchizatçıları göstərin. Əgər məhsulları varsa, təchizatçı şirkətin adı,məhsulun adı,
+-- Burada LEFT JOIN istifadə etdim ki, Londondakı bütün müştərilər nəticədə görünsün. Sifariş verməyən müştərilər üçün sifariş məlumatları NULL olaraq göstərilir.
+----------------------------------------------
+--Sual. Bütün təchizatçıları göstərin. Əgər məhsulları varsa, təchizatçı şirkətin adı,məhsulun adı,
 --məhsulun kateqoriyası, məhsulun sifariş olunduğu sifariş nömrəsi göstər. Yalnız USA ölkəsində yerləşən təchizatçılar göstərilsin.
 select s.CompanyName, 
        p.ProductName, 
@@ -45,12 +51,17 @@ left join [Order Details] od on od.ProductID = p.ProductID
 left join Orders o on od.OrderID = o.OrderID
 where s.Country = 'USA';
 
+--Bu taskda Suppliers cədvəlini əsas götürərək digər cədvəllərlə LEFT JOIN etdim. Yalnız USA-da olan təchizatçıları göstərdim.
+------------------------------------------------------------------------------------------------------------------------------
 --SELF JOIN
---Bütün işçiləri və onların rəhbərlərini göstərin. Nəticədə işçinin adı, işçinin soyadı, rəhbərinin adı və rəhbərinin soyadı göstərilsin.
+--Sual. Bütün işçiləri və onların rəhbərlərini göstərin. Nəticədə işçinin adı, işçinin soyadı, rəhbərinin adı və rəhbərinin soyadı göstərilsin.
 --Işçinin soyadına görə A-Z sıralayın
-SELECT e.FirstName as EmployeeFirstName,
+select e.FirstName as EmployeeFirstName,
        e.LastName as EmployeeLastName,
 	   m.FirstName as ManagerFirstName,
 	   m.LastName as ManagerLastName
-from Employees e left join Employees  m on e.ReportsTo = m.EmployeeID
+from Employees e left join Employees  m
+on e.ReportsTo = m.EmployeeID
 order by e.LastName asc;
+
+--Employees cədvəlini özü ilə LEFT JOIN etdim. ReportsTo sütunu vasitəsilə hər işçinin rəhbərini göstərdim.
