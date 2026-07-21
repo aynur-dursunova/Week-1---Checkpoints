@@ -1,5 +1,3 @@
-select * from Customers;
-
 --Sual. Hər sifarişin sifariş nömrəsini, sifarişi verən müştərinin adını, sifariş tarixini göstərin.
 select 
        o.OrderID,
