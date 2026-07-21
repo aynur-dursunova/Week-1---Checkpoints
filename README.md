@@ -1,4 +1,4 @@
-# Week-1---Checkpoints
+# Week-1---SQL Checkpoints
 SQL Checkpoints using Northwind Database
 1. SELECT / WHERE / ORDER BY / LIMIT
 2. Joins
