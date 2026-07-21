@@ -6,7 +6,7 @@ from Customers
 group by Country
 order by CustomerCount desc;
 
---Burada Customers cədvəlində ölkələr üzrə müştəri sayını COUNT() ilə hesablandım.
+--Burada Customers cədvəlində ölkələr üzrə müştəri sayını COUNT() ilə hesabladım.
 --GROUP BY ilə ölkələr qruplaşdırdım və nəticəni müştəri sayına görə azalan qaydada sıraladım.
 
 --Sual. Hər sifariş üzrə sifariş olunan məhsulların ümumi sayını hesablayın. Nəticədə sifariş nömrəsi və ümumi sifariş miqdarı göstərilsin. 
